@@ -1,8 +1,8 @@
-# fwmav-em-codesign Appendix Summary
+# Electromechanical Co-Design Towards Realizing Autonomous Insect-Scale Flapping-Wing Micro-Aerial Vehicles
 
-This repository contains research artifacts for the insect-scale flapping-wing micro aerial vehicle (FWMAV) electromechanical co-design framework.
+This repo contains research artifacts for the insect-scale flapping-wing micro aerial vehicle (FWMAV) electromechanical co-design framework.
 
-The `appendix/` folder contains summary documents that map paper sections to the actual repository code and data.
+The `appendix/` folder contains documents detailing how paper sections map to the actual repo code and data.
 
 ## Appendix Documents
 
@@ -25,11 +25,11 @@ The `appendix/` folder contains summary documents that map paper sections to the
 ## How to use this repository
 
 1. Read the appendix documents in `appendix/` to understand how the paper sections are realized in code.
-2. Use `release/v0.0/src/` for the physics-based design models.
-3. Use `release/v0.0/electrical/` and `release/v0.0/hdl/` for the ASIC and power electronics RTL.
-4. Use `release/v0.0/batteries/` for battery measurement and EIS support.
+2. Locate the framework source code in `release/v0.0/src/` and the shell script `release/v0.0/src/run.sh` to run the code.
+3. Use `release/v0.0/pzt/` for the PZT actuator COMSOL model and device data.
+4. Use `release/v0.0/electrical/` and `release/v0.0/hdl/` for the ASIC and power electronics RTL.
+5. Use `release/v0.0/batteries/` for battery measurement and EIS support.
 
 ## Notes
 
 - The appendix documents are written as guided summaries and should be used as a navigation aid between the paper and the code.
-- `release/v0.0/pzt/` contains measurements and model-fitting tools for piezoelectric actuator impedance, which support the electrical drive model described in the actuation appendix.
