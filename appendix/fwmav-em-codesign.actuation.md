@@ -12,7 +12,9 @@ This document explains how the Python modules in `../raw/` implement the **Actua
 
 The actuation subsystem couples two primary components, the PZT Bimorph and Wing which interact as shown:
 
-![](./figures/actuation.0.png)
+<div align="center">
+  <img src="figures/actuation.0.png" width="300" alt="Alt text">
+</div>
 
 ```
 [Electric Field Input] 
