@@ -73,13 +73,13 @@ The repository includes downstream physical and place-and-route artifacts that s
 - `release/v0.0/electrical/tapeout/` - Contains both the physical GDS and netlist associated with the 180 nm SOI tapeout used to validate on-chip power electronics
 
 <div align="center">
-  <img src="figures/control.0.png" width="300" alt="Alt text">
+  <img src="figures/controller.0.png" width="300" alt="">
 </div>
 
 - `release/v0.0/electrical/apr/` - Contains both the physical GDS and netlist for the digital logic used in the analysis presented in the paper
 
 <div align="center">
-  <img src="figures/control.1.png" width="300" alt="Alt text">
+  <img src="figures/controller.1.png" width="300" alt="">
 </div>
 
 These GDS files indicate that the controller ASIC design proceeds beyond RTL into layout/tapeout stages.
