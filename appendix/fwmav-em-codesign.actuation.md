@@ -13,7 +13,7 @@ This document explains how the Python modules in `../raw/` implement the **Actua
 The actuation subsystem couples two primary components, the PZT Bimorph and Wing which interact as shown:
 
 <div align="center">
-  <img src="figures/actuation.0.png" width="300" alt="Alt text">
+  <img src="figures/actuation.0.png" width="300" alt="">
 </div>
 
 ```
@@ -163,6 +163,12 @@ $$b = \frac{\bar{F}_D RT}{\dot{\Phi}}$$
 
 where $\bar{F}_D$ is the average drag force. This damping couples the aerodynamic environment to the wing dynamics.
 
+This implementation follows models and derivations presented in Whitney et al. (2009). Allowing us to construct a time-dependent Lift Force curve as shown below.
+
+<div align="center">
+  <img src="figures/actuation.1.png" width="300" alt="">
+</div>
+
 ---
 
 ## Part (b): PZT Bimorph Actuator Implementation (`piezo_bimorph.py`)
@@ -286,7 +292,7 @@ This represents the mechanical impedance of the actuator itself, which will be c
 
 ### Resonance Frequency: Actuator-Transmission-Wing System
 
-The paper's lumped element model combines:
+The paper's lumped element model combines (following models using Finio et al. (2011)):
 
 - Bimorph stiffness: `deviceStiffness`
 - Wing hinge stiffness: `stiffnessParameter` (from wing)
@@ -332,6 +338,12 @@ In the repository, this calibration is backed by measured PZT datasets in `relea
 
 The `release/v0.0/pzt/comsol` contains COMSOL-based simulation data (`*.mph`) used for device extrapolation.
 
+The scripts above enable both automatic and manual (to support fine tuning impedances) parameter fitting to match both device data and COMSOL data as shown:
+
+<div align="center">
+  <img src="figures/actuation.1.png" width="300" alt="">
+</div>
+
 This impedance dataset and the fitting workflow directly support the paper's Step 3 converter sizing and ensure the bimorph drive model is grounded in measurement.
 
 ### Bimorph Load Current
@@ -343,6 +355,10 @@ $$\bar{I}_{PZT} = 2\left(\frac{2V_{AC}}{\pi Z(\omega)} + \frac{V_{DC}}{Z(0)}\rig
 where $V_{AC} = V_{DC} = V_{PZT}$ (the target peak voltage from Table 1).
 
 This current is used in Step 3 to size the converter and in Step 5 to determine battery requirements.
+
+<div align="center">
+  <img src="figures/actuation.2.png" width="500" alt="">
+</div>
 
 ---
 
