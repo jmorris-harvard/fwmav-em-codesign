@@ -8,8 +8,8 @@ This document maps the paper's Controller / custom IC section to the actual hard
 
 `Top.sv` is the central SoC integration point for the controller:
 
-- Instantiates the Cortex-M0 debug-enabled core: `CM0DbgAHB`.
-- Connects the core to a single AHB master and routes it through `ahb_interconnect`.
+- Instantiates the Cortex-M0 debug-enabled core: `CM0DbgAHB` (Core RTL sources are not included due to ARM IP requirements).
+- Connects the core to a single AHB master and routes it through `ahb_interconnect` (Also not included).
 - Exposes two on-chip memories via AHB: flash and SRAM.
 - Instantiates the key peripherals that implement the controller and power-electronics interfaces.
 
@@ -68,7 +68,7 @@ That means the controller interface exists, even if the internal charge-pump sta
 
 ### 2.3. Actuation override / drive interface: `overrideChip_ahb.sv`
 
-- `overrideChip_ahb.sv` is the peripheral wrapper for the drive override hardware.
+- `overrideChip_ahb.sv` is the peripheral wrapper for the drive override hardware to control the on-chip HV AWG (or off-chip analog peripherals via FPGA during the design and test phases).
 - It instantiates `override.sv`, which exposes:
   - SPI / serial control signals: `cs`, `mosi`, `sck`
   - actuator outputs: `pdrive`, `ndrive`, `drive_en`
@@ -77,13 +77,13 @@ That means the controller interface exists, even if the internal charge-pump sta
 
 ### 2.4. Floating-point compute block: `fpu_ahb.sv`
 
-- `fpu_ahb.sv` exposes a programmable floating-point accelerator on AHB.
+- `fpu_ahb.sv` exposes a programmable floating-point accelerator synthesized via Catapult HLS on AHB.
 - It uses `fpu_register_io` to map registers, triggers, flags, and data ports.
 - The functional core is `fpu` which instantiates `fpu_block`.
 
 This block supports the controller's on-chip compute requirements for vector/math operations in the flight-control stack.
 
-### 2.5. Communications and status peripherals
+### 2.5. Communications and status peripherals (for FPGA based Testing)
 
 - `sercomm_ahb.sv`: UART/serial communication peripheral.
 - `led_ahb.sv`: simple LED status peripheral.

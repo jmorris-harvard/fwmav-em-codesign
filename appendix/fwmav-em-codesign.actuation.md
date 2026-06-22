@@ -10,7 +10,9 @@ This document explains how the Python modules in `../raw/` implement the **Actua
 
 ## Overview: Architecture and Integration
 
-The actuation subsystem couples two primary components:
+The actuation subsystem couples two primary components, the PZT Bimorph and Wing which interact as shown:
+
+![](./figures/actuation.0.png)
 
 ```
 [Electric Field Input] 
@@ -153,7 +155,7 @@ def mxelastic(this, psi):
 
 ### Aerodynamic Damping
 
-Drag creates aerodynamic damping. The paper models this using:
+Aerodynamic drag creates aerodynamic damping. This implementation models this using:
 
 $$b = \frac{\bar{F}_D RT}{\dot{\Phi}}$$
 
@@ -177,7 +179,7 @@ class PiezoBimorph(Component):
         # Computed results stored in this.res
 ```
 
-This design pattern separates input parameters (`vars`) from computed outputs (`res`), allowing flexible parameter sweeping in `mechanical-options.py`.
+This design pattern separates input parameters (`vars`) from computed outputs (`res`), allowing flexible parameter sweeping in `mechanical_options.py`.
 
 ### Material Properties
 
@@ -326,7 +328,7 @@ In the repository, this calibration is backed by measured PZT datasets in `relea
 - `release/v0.0/pzt/data/data.1/fit.py` provides a GUI-driven optimization workflow to fit those models to measured admittance or impedance.
 - `parse.py`, `solve.py`, `solve_cma.py`, and `summary.csv` capture the data processing and parameter extraction steps.
 
-The `release/v0.0/pzt/comsol` directory is present in the release tree as the logical location for COMSOL-based simulation data used for device extrapolation, although this snapshot contains no simulation files.
+The `release/v0.0/pzt/comsol` contains COMSOL-based simulation data (`*.mph`) used for device extrapolation.
 
 This impedance dataset and the fitting workflow directly support the paper's Step 3 converter sizing and ensure the bimorph drive model is grounded in measurement.
 
@@ -342,9 +344,9 @@ This current is used in Step 3 to size the converter and in Step 5 to determine 
 
 ---
 
-## Integration: Mechanical-Options Design Space Exploration (`mechanical-options.py`)
+## Integration: Mechanical-Options Design Space Exploration (`mechanical_options.py`)
 
-The `mechanical-options.py` script orchestrates the design space exploration by sweeping parameters and validating designs.
+The `mechanical_options.py` script orchestrates the design space exploration by sweeping parameters and validating designs.
 
 ### Parameter Sweep
 
@@ -413,7 +415,7 @@ For each valid design point, the script outputs:
 - `totalMechanicalMass` — Combined mass of bimorph + wing system
 - `netThrust` — Liftable mass minus mechanical mass
 
-Results are saved to `mechanical-options.csv`, which becomes the input to subsequent design steps (converter design, battery sizing, etc.) in the full framework.
+Results are saved to `mechanical_options.csv`, which becomes the input to subsequent design steps (converter design, battery sizing, etc.) in the full framework.
 
 ---
 
@@ -441,6 +443,6 @@ The three Python modules implement the complete **Actuation: Wings and PZT Bimor
 
 - **`passive.py`** provides the wing aerodynamic and mechanical dynamics model, simulating the wing response under bimorph actuation.
 
-- **`mechanical-options.py`** combines these models to sweep the design space, identifying valid designs and outputting parameters for downstream design steps (converter design, battery sizing).
+- **`mechanical_options.py`** combines these models to sweep the design space, identifying valid designs and outputting parameters for downstream design steps (converter design, battery sizing).
 
 The implementation faithfully reproduces the mathematical models described in the paper while adding practical engineering details (material properties, tapered designs, electrical calibration) necessary for realistic FWMAV design.

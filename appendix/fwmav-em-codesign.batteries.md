@@ -10,7 +10,7 @@ This document explains how the repository implements the **Energy Source: Batter
 - `release/v0.0/batteries/data/ss` — steady-state EIS measurement outputs for battery cells.
 - `release/v0.0/batteries/scripts/eis.py` — FPGA-based EIS test harness and command-line controller.
 - `release/v0.0/batteries/xil` — FPGA interface sources for EIS measurement.
-- `release/v0.0/batteries/data/capacity` — capacity dataset directory present in the release tree.
+- `release/v0.0/batteries/data/capacity` — capacity measurements dataset.
 
 ---
 
@@ -35,7 +35,7 @@ Material data is encoded in class dictionaries:
 - `densities`
 - `thicknesses`
 
-This matches the paper's abstraction that battery energy and mass are computed from layer geometry and material density.
+This matches the abstraction that battery energy and mass are computed from layer geometry and material density.
 
 ### Core Methods
 
