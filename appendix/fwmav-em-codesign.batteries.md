@@ -7,7 +7,7 @@ This document explains how the repository implements the **Energy Source: Batter
 ## Primary Files and Data Sources
 
 - `release/v0.0/src/battery.py` — electrochemical battery model and sizing functions.
-- `release/v0.0/batteries/data/ss` — steady-state EIS measurement outputs for battery cells.
+- `release/v0.0/batteries/data/ss` — small signal EIS measurement outputs for battery cells.
 - `release/v0.0/batteries/scripts/eis.py` — FPGA-based EIS test harness and command-line controller.
 - `release/v0.0/batteries/xil` — FPGA interface sources for EIS measurement.
 - `release/v0.0/batteries/data/capacity` — capacity measurements dataset.
@@ -54,20 +54,27 @@ The script includes a small `main()` example that evaluates a runtime estimate f
 
 ---
 
-## EIS and Steady-State Battery Datasets
+## EIS and Small-Signal Battery Datasets
 
-The release tree contains steady-state EIS data under `release/v0.0/batteries/data/ss`.
+The release tree contains small-signal EIS data under `release/v0.0/batteries/data/ss`.
 
 ### Data Organization
 
-- `battery.0/` and `battery.1/` contain CSV measurement data for different operating conditions.
+- `battery.0/` and `battery.1/` contain CSV measurement data.
 - Each directory includes both `sc_*` and `sv_*` interpreted data files.
 - `summary.csv` contains the aggregated frequency sweep results with columns:
   - `frequency`
   - `magnitude`
   - `phase`
 
-For example, `battery.0/summary.csv` lists frequency-dependent EIS results from 1 Hz to 5000 Hz.
+For example, `battery.0/summary.csv` lists frequency-dependent EIS results from 1 Hz to 10000 Hz guided by measurement strategies presented in Choi et al. (2022).
+
+Example measurements are shown below:
+
+<div align="center">
+  <img src="figures/batteries.0.png" width="500" alt="">
+</div>
+
 
 ### Measurement Role
 
@@ -87,9 +94,14 @@ The `release/v0.0/batteries/xil` directory contains supporting FPGA sources:
 
 - `eis.sv` — EIS measurement logic
 - `spi.sv` — SPI interface
-- `TopWrapper.v` and `Top.sv.bkp` — FPGA wrapper files
 
 These artifacts show that the repository supports actual EIS hardware integration, not only offline modeling.
+
+The `release/v0.0/batteries/pcb` directory contains the PCB specification files. The resulting implementation and usage is shown below:
+
+<div align="center">
+  <img src="figures/batteries.0.png" width="500" alt="">
+</div>
 
 ---
 

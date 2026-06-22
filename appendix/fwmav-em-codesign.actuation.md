@@ -341,7 +341,7 @@ The `release/v0.0/pzt/comsol` contains COMSOL-based simulation data (`*.mph`) us
 The scripts above enable both automatic and manual (to support fine tuning impedances) parameter fitting to match both device data and COMSOL data as shown:
 
 <div align="center">
-  <img src="figures/actuation.1.png" width="300" alt="">
+  <img src="figures/actuation.3.png" width="300" alt="">
 </div>
 
 This impedance dataset and the fitting workflow directly support the paper's Step 3 converter sizing and ensure the bimorph drive model is grounded in measurement.
