@@ -100,7 +100,7 @@ These artifacts show that the repository supports actual EIS hardware integratio
 The `release/v0.0/batteries/pcb` directory contains the PCB specification files. The resulting implementation and usage is shown below:
 
 <div align="center">
-  <img src="figures/batteries.0.png" width="500" alt="">
+  <img src="figures/batteries.1.png" width="500" alt="">
 </div>
 
 ---
