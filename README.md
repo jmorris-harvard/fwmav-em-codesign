@@ -16,7 +16,7 @@ The `appendix/` folder contains documents detailing how paper sections map to th
 
 - `appendix/fwmav-em-codesign.controller.md`
   - Maps the paper's **Controller / custom IC** section to the SoC RTL and validation infrastructure.
-  - Describes the top-level AHB SoC integration in `release/v0.0/hdl/rtl/Top.sv` and related peripherals such as the FPU, boost controller, charge-pump interface, and debug system.
+  - Describes the top-level AHB SoC integration and related peripherals such as the boost controller, charge-pump interface, and debug system.
 
 - `appendix/fwmav-em-codesign.batteries.md`
   - Explains the implementation of the **Energy Source: Battery** section.
@@ -27,7 +27,7 @@ The `appendix/` folder contains documents detailing how paper sections map to th
 1. Read the appendix documents in `appendix/` to understand how the paper sections are realized in code.
 2. Locate the framework source code in `release/v0.0/src/` and the shell script `release/v0.0/src/run.sh` to run the code.
 3. Use `release/v0.0/pzt/` for the PZT actuator COMSOL model and device data.
-4. Use `release/v0.0/electrical/` and `release/v0.0/hdl/` for the ASIC and power electronics RTL.
+4. Use `release/v0.0/electrical/` for the ASIC and power electronics RTL.
 5. Use `release/v0.0/batteries/` for battery measurement and EIS support.
 
 ## Notes
