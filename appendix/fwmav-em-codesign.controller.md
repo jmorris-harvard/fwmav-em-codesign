@@ -146,3 +146,12 @@ Post-tapeout validation was executed to determine the on-chip voltage generation
 - A sample 1 mm PZT Bimorph Actuator used as a load
 
 Sample demos are included below:
+
+https://github.com/user-attachments/assets/c55b3711-68a7-4948-bf19-cf1bd4ab38fe
+
+Sample oscilloscope measurements are posted below, data is included in `fwmav-em-codesign/release/v0.0/electrical/data/driver` and `fwmav-em-codesign/release/v0.0/electrical/data/cp`
+
+<div align="center">
+  <img src="figures/controller.2.png" width="300" alt="">
+</div>
+
