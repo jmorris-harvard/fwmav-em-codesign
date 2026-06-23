@@ -147,9 +147,11 @@ Post-tapeout validation was executed to determine the on-chip voltage generation
 
 Sample demos are included below:
 
-https://github.com/user-attachments/assets/c55b3711-68a7-4948-bf19-cf1bd4ab38fe
+<div align="center">
+  <a href="https://github.com/user-attachments/assets/c55b3711-68a7-4948-bf19-cf1bd4ab38fe"></a>
+</div>
 
-Sample oscilloscope measurements are posted below, data is included in `fwmav-em-codesign/release/v0.0/electrical/data/driver` and `fwmav-em-codesign/release/v0.0/electrical/data/cp`
+Sample oscilloscope measurements are posted below, data is included in `fwmav-em-codesign/release/v0.0/electrical/data/driver` and `fwmav-em-codesign/release/v0.0/electrical/data/cp`:
 
 <div align="center">
   <img src="figures/controller.2.png" width="500" alt="">
