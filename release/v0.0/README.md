@@ -35,3 +35,7 @@ The pipeline generates candidate mechanical configurations, evaluates passive wi
 - `piezo_bimorph.py`: Implements the piezo-bimorph actuator model used by `mechanical_options.py`.
 - `battery.py`: Provides battery mass and runtime estimation helpers used by the power-converter scripts.
 - `process_specs.py`: Stores process-specific physical specifications used by the converter models.
+
+## Data
+
+- Sample output data used in the paper is located in `src/outputs/coarse`, `src/outputs/hier0` and `src/outputs/heir1`
