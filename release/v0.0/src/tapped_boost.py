@@ -7,6 +7,9 @@ import argparse
 import os
 import pandas as pd
 
+import warnings
+warnings.filterwarnings ("ignore", category = RuntimeWarning)
+
 from battery import Battery
 
 class Boost:
@@ -352,43 +355,6 @@ class Boost:
     )
     return (ovoltage * ovoltage * period) / rout, idischarge, offtime
 
-  def ecore (
-    cvoltage,
-    ccount,
-    cresistance,
-    rsource,
-    irsource,
-    inductance,
-    tratio,
-    imass,
-    imax,
-    kcoupling,
-    ontime,
-    ovoltage,
-    duty
-  ):
-    k = 4.855e-8
-    m = 2.74 # beta
-    n = 1.64 # alpha
-    ipeak = Boost.ipeak ( 
-        cvoltage = cvoltage,
-        ccount = ccount,
-        cresistance = cresistance,
-        rsource = rsource,
-        irsource = irsource,
-        inductance = inductance,
-        tratio = tratio,
-        kcoupling = kcoupling,
-        ontime = ontime,
-        ovoltage = ovoltage,
-        duty = duty
-    )[0]
-    # predict B using inductor core constraints
-    Bmax = 0.3
-    B = Bmax * (ipeak / imax)
-    f = 2.0 / (ontime / duty)
-    return k * (B ** m) * (f ** n) * imass * (ontime / duty)
-
   def eswitch (
     cvoltage,
     ccount,
@@ -526,25 +492,6 @@ class Boost:
       duty = duty
     )[0]
     
-    '''
-    ecore = Boost.ecore (
-      cvoltage = cvoltage,
-      ccount = ccount,
-      cresistance = cresistance,
-      rsource = rsource,
-      irsource = irsource,
-      inductance = inductance,
-      tratio = tratio,
-      imass = imass,
-      imax = imax,
-      kcoupling = kcoupling,
-      ontime = ontime,
-      ovoltage = ovoltage,
-      duty = duty
-    )
-    '''
-    ecore = 0.0
-    
     if verbose:
       print ('input voltage:', ivoltage)
       print ('source resistance:', rsource)
@@ -569,7 +516,7 @@ class Boost:
       print ('resistor energy on discharge:', eresistor)
       print ('output energy per cycle:', eoutput)
       print ('switch energy:', eswitch)
-    return einductor - ecapacitor + einputoutput - eresistor - eoutput - eswitch - ecore, einductor, ecapacitor, einputoutput, eresistor, eoutput, eswitch, ecore, ipeak, ivoltage, downtime, idischarge
+    return einductor - ecapacitor + einputoutput - eresistor - eoutput - eswitch, einductor, ecapacitor, einputoutput, eresistor, eoutput, eswitch, ipeak, ivoltage, downtime, idischarge
 
   def weight (
     inductance,
@@ -1073,7 +1020,7 @@ def main_sweep ():
   cols.append ('battery-alpha')
   cols.append ('runtime')
   dfout = pd.DataFrame (columns = cols)
-  outfile = os.path.splitext (args.file)[0] + '-boost.csv'
+  outfile = os.path.splitext (args.file)[0] + '_boost.csv'
   for i in range (df.shape[0]):
     if i % 100 == 0:
       print (i)

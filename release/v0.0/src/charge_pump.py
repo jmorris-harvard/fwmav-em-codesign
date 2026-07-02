@@ -10,6 +10,9 @@ import matplotlib.pyplot as plt
 from process_specs import XT018, XT011
 from battery import Battery
 
+import warnings
+warnings.filterwarnings ("ignore", category = RuntimeWarning)
+
 class ChargePump:
   def __init__ (this):
     pass
@@ -430,7 +433,7 @@ def main_sweep ():
   cols.append ('battery-alpha')
   cols.append ('runtime')
   dfout = pd.DataFrame (columns = cols)
-  outfile = os.path.splitext (args.file)[0] + '-cp-0.csv'
+  outfile = os.path.splitext (args.file)[0] + '_cp.csv'
   for i in range (df.shape[0]):
     # grab option
     row = df.iloc[i]

@@ -25,13 +25,13 @@ echo "Setup complete."
 python3 "$SCRIPT_DIR/mechanical_options.py"
 
 # correct thrust capabilities
-python3 "$SCRIPT_DIR/passive.py" --file "$SCRIPT_DIR/mechanical-options.csv"
+python3 "$SCRIPT_DIR/passive.py" --file "$SCRIPT_DIR/mechanical_options.csv"
 
 # add external components
-python3 "$SCRIPT_DIR/external.py" --file "$SCRIPT_DIR/mechanical-options-pruned.csv" --additional "$SCRIPT_DIR/../static/external-xt018.csv"
+python3 "$SCRIPT_DIR/external.py" --file "$SCRIPT_DIR/mechanical_options_pruned.csv" --additional "$SCRIPT_DIR/../static/external_xt018.csv"
 
 # add tapped boost power circuit
-python3 "$SCRIPT_DIR/tapped_boost.py" --file "$SCRIPT_DIR/mechanical-options-pruned-external-xt018.csv" --split
+python3 "$SCRIPT_DIR/tapped_boost.py" --file "$SCRIPT_DIR/mechanical_options_pruned_external_xt018.csv" --split
 
 # OR add charge pump power circuit
-python3 "$SCRIPT_DIR/charge_pump.py" --file "$SCRIPT_DIR/mechanical-options-pruned-external-xt018.csv" --split --process "xt018"
+python3 "$SCRIPT_DIR/charge_pump.py" --file "$SCRIPT_DIR/mechanical_options_pruned_external_xt018.csv" --split --process "xt018"

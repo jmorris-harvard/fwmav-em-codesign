@@ -1,9 +1,13 @@
 from piezo_bimorph import PiezoBimorph
+import argparse
 import numpy as np
 import pandas as pd
 import itertools
 
 def main ():
+  parser = argparse.ArgumentParser (description = 'build mechanical options for piezo bimorph')
+  parser.add_argument ('--file', '-f', type = str, help = 'output csv file for mechanical options', default = 'mechanical_options.csv')
+  args = parser.parse_args ()
   # create PB object
   pb = PiezoBimorph ()
   params = {
@@ -78,7 +82,7 @@ def main ():
         results[key].append (intermediate[key])
   # save all results to csv
   df = pd.DataFrame.from_dict (results)
-  df.to_csv ('mechanical_options.csv')
+  df.to_csv (args.file, index = False)
 
 if __name__ == '__main__':
   main ()

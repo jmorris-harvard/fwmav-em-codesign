@@ -235,7 +235,7 @@ def main_prune ():
 
   # load options
   df = pd.read_csv (args.file)
-  outfile = os.path.splitext (args.file)[0] + '-pruned.csv'
+  outfile = os.path.splitext (args.file)[0] + '_pruned.csv'
   dfpruned = pd.DataFrame (columns = df.columns)
 
   # run full analysis

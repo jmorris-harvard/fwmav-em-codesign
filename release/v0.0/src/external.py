@@ -11,7 +11,7 @@ def main ():
   parser.add_argument ('--additional', '-a', type = str, help = 'csv containing addtional elements with headers [name,mass,power,voltage]')
 
   args = parser.parse_args ()
-  outfile = os.path.splitext (args.file)[0] + '-' + os.path.splitext (args.additional)[0] + '.csv'
+  outfile = os.path.splitext (args.file)[0] + '_' + os.path.splitext (os.path.basename (args.additional))[0] + '.csv'
   df = pd.read_csv (args.file)
 
   # get all new columns
